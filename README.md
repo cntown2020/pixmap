@@ -1,7 +1,7 @@
 pixmap
 ======
 
-Simple library for creating PPM, PPM.GZ and PNG images from C/C++ programs.
+Simple library for creating PPM, PPM.GZ, PNG and JPG images from C/C++ programs.
 
 
 ### copyright
