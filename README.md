@@ -22,6 +22,6 @@ where `$CODEPATH` should be the root code directory exported as an evironmental 
 
 which means that `github.com` directory should be placed in `mycodes`.
 
-### copyright
+### COPYRIGHT / LICENSE
 
-See LICENSE file or [http://bszcz.eu/license/BSD/?year=2012-2013](http://bszcz.eu/license/BSD/?year=2012-2013)
+The MIT License (MIT).
