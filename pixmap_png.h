@@ -4,6 +4,8 @@
 #ifndef __PIXMAP_PNG_H__ // enables .png format, requires '-lpng' compilation flag
 #define __PIXMAP_PNG_H__
 
+#include <github.com/bszcz/pixmap/pixmap.h>
+
 int PixmapWritePNG( const struct pixmap* img, const char* fileName );
 
 #endif

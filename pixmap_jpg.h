@@ -4,6 +4,8 @@
 #ifndef __PIXMAP_JPG_H__ // enables .jpg format, requires '-ljpeg' compilation flag
 #define __PIXMAP_JPG_H__
 
+#include <github.com/bszcz/pixmap/pixmap.h>
+
 int PixmapWriteJPG( const struct pixmap* img, const char* fileName );
 
 #endif

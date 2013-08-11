@@ -5,7 +5,7 @@
 
 void* PixmapFree( struct pixmap* img ) {
 	if ( NULL == img ) {
-		fprintf( stderr, "PixmapWaring: pixmap pointer == NULL\n" );
+		fprintf( stderr, "PixmapWarning: pixmap pointer == NULL\n" );
 	} else {
 		if ( NULL != img->pixels2 ) {
 			for ( long h = 0; h < img->height; h++ ) {
