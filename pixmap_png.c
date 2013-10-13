@@ -31,11 +31,11 @@ int pixmap_write_png( const struct pixmap* img, const char* filename ) {
 		err = 1;
 		goto destroy_png;
 	}
-	for ( long h = 0; h < img->height; h++ ) {
+	for ( int h = 0; h < img->height; h++ ) {
 		rows[ h ] = img->bytes + PIXMAP_COLORS*h*img->width;
 	}
 
-	const long depth = 8;
+	const int depth = 8;
 	png_init_io( png, file );
 	png_set_IHDR( png, info, img->width, img->height, depth,
 		PNG_COLOR_TYPE_RGB, PNG_INTERLACE_NONE, PNG_COMPRESSION_TYPE_BASE, PNG_FILTER_TYPE_BASE );

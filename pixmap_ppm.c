@@ -12,7 +12,7 @@ int pixmap_write_ppm( const struct pixmap* img, const char* filename ) {
 		fprintf( stderr, "pixmap error: cannot open PPM file '%s'\n", filename );
 		return 1;
 	}
-	if ( 0 > fprintf( file, "P6\n%ld %ld\n255\n", img->width, img->height ) ) {
+	if ( 0 > fprintf( file, "P6\n%d %d\n255\n", img->width, img->height ) ) {
 		fprintf( stderr, "pixmap error: cannot write PPM header\n" );
 		err = 1;
 		goto fclose_ppm;

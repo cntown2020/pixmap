@@ -29,8 +29,8 @@ enum {
 };
 
 struct pixmap {
-	long width;
-	long height;
+	int width;
+	int height;
 	int chroma;	// jpeg only
 	int quality;	// jpeg only
 	unsigned char*		bytes;		// access by: bytes[0..PIXMAP_COLORS*width*height] ( RGBRGB... in row major order )
@@ -42,6 +42,6 @@ void* pixmap_free( struct pixmap* img );
 
 void* pixmap_alloc_error( struct pixmap* img );
 
-struct pixmap* pixmap_alloc( long width, long height );
+struct pixmap* pixmap_alloc( int width, int height );
 
 #endif

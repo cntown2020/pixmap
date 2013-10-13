@@ -13,7 +13,7 @@ int main() {
 	if ( NULL == img ) exit( EXIT_FAILURE ); // error message is printed by pixmap_alloc()
 
 	double x = 0.666;
-	for ( long p = 0; p < PIXMAP_COLORS*img->width*img->height; p++ ) {
+	for ( int p = 0; p < PIXMAP_COLORS*img->width*img->height; p++ ) {
 		x = 4 * x * ( 1.0 - x ); // random numbers from chaotic logistic map
 		img->bytes[ p ] = 256 * x;
 	}
@@ -36,18 +36,18 @@ int main() {
 }
 
 void pixmap_print( struct pixmap* img ) {
-	for ( long p = 0; p < PIXMAP_COLORS*img->width*img->height; p++ ) {
-		printf( "bytes[ %ld ] = %u\n", p, img->bytes[ p ] );
+	for ( int p = 0; p < PIXMAP_COLORS*img->width*img->height; p++ ) {
+		printf( "bytes[ %d ] = %u\n", p, img->bytes[ p ] );
 	}
-	for ( long p = 0; p < img->width*img->height; p++ ) {
-		for ( long c = 0; c < PIXMAP_COLORS; c++ ) {
-			printf( "pixels[ %ld ][ %ld ] = %u\n", p, c, img->pixels[ p ][ c ] );
+	for ( int p = 0; p < img->width*img->height; p++ ) {
+		for ( int c = 0; c < PIXMAP_COLORS; c++ ) {
+			printf( "pixels[ %d ][ %d ] = %u\n", p, c, img->pixels[ p ][ c ] );
 		}
 	}
-	for ( long h = 0; h < img->height; h++ ) {
-		for ( long w = 0; w < img->width; w++ ) {
-			for ( long c = 0; c < PIXMAP_COLORS; c++ ) {
-				printf( "pixels2[ %ld ][ %ld ][ %ld ] = %u\n", h, w, c, img->pixels2[ h ][ w ][ c ] );
+	for ( int h = 0; h < img->height; h++ ) {
+		for ( int w = 0; w < img->width; w++ ) {
+			for ( int c = 0; c < PIXMAP_COLORS; c++ ) {
+				printf( "pixels2[ %d ][ %d ][ %d ] = %u\n", h, w, c, img->pixels2[ h ][ w ][ c ] );
 			}
 		}
 	}
