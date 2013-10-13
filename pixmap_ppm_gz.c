@@ -5,30 +5,30 @@
 #include <github.com/bszcz/pixmap/pixmap_ppm_gz.h>
 #include <zlib.h>
 
-int PixmapWritePPM_GZ( const struct pixmap* img, const char* fileName ) {
+int pixmap_write_ppm_gz( const struct pixmap* img, const char* filename ) {
 	int err = 0;
 
-	gzFile file = gzopen( fileName, "wb9" ); // '9' means maximum compression level
+	gzFile file = gzopen( filename, "wb9" ); // '9' means maximum compression level
 	if ( NULL == file ) {
-		fprintf( stderr, "PixmapError: cannot open PPM.GZ file '%s'\n", fileName );
+		fprintf( stderr, "pixmap error: cannot open PPM.GZ file '%s'\n", filename );
 		return 1;
 	}
 	if ( 0 == gzprintf( file, "P6\n%ld %ld\n255\n", img->width, img->height ) ) {
-		fprintf( stderr, "PixmapError: cannot write PPM.GZ header\n" );
+		fprintf( stderr, "pixmap error: cannot write PPM.GZ header\n" );
 		err = 1;
-		goto gzclosePPM;
+		goto gzclose_ppm;
 	}
 	const long data_size = PIXMAP_COLORS*img->width*img->height;
 	if ( data_size != gzwrite( file, img->bytes, data_size*sizeof( unsigned char ) ) ) {
-		fprintf( stderr, "PixmapError: cannot write PPM.GZ data\n" );
+		fprintf( stderr, "pixmap error: cannot write PPM.GZ data\n" );
 		err = 1;
-		goto gzclosePPM;
+		goto gzclose_ppm;
 	}
 
-	gzclosePPM:
+	gzclose_ppm:
 		if ( Z_OK != gzclose( file ) ) {
-			fprintf( stderr, "PixmapError: cannot close PPM.GZ file '%s'\n", fileName );
+			fprintf( stderr, "pixmap error: cannot close PPM.GZ file '%s'\n", filename );
 			err = 1;
 		}
 	return err;
-} // PixmapWritePPM_GZ(  )
+} // pixmap_write_ppm_gz(  )

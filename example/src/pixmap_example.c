@@ -6,36 +6,36 @@
 #include <github.com/bszcz/pixmap/pixmap_png.h>
 #include <github.com/bszcz/pixmap/pixmap_jpg.h>
 
-void PixmapPrint( struct pixmap* img );
+void pixmap_print( struct pixmap* img );
 
 int main() {
-	struct pixmap* img = PixmapAlloc( 1600, 1200 );
-	if ( NULL == img ) exit( EXIT_FAILURE ); // error message is printed by PixmapAlloc()
+	struct pixmap* img = pixmap_alloc( 1600, 1200 );
+	if ( NULL == img ) exit( EXIT_FAILURE ); // error message is printed by pixmap_alloc()
 
 	double x = 0.666;
 	for ( long p = 0; p < PIXMAP_COLORS*img->width*img->height; p++ ) {
 		x = 4 * x * ( 1.0 - x ); // random numbers from chaotic logistic map
 		img->bytes[ p ] = 256 * x;
 	}
-	//PixmapPrint( img );
+	//pixmap_print( img );
 
-	PixmapWritePPM( img, "pixmap.ppm" );
-	PixmapWritePPM_GZ( img, "pixmap.ppm.gz" );
-	PixmapWritePNG( img, "pixmap.png" );
-	PixmapWriteJPG( img, "pixmap.jpg" );
+	pixmap_write_ppm( img, "pixmap.ppm" );
+	pixmap_write_ppm_gz( img, "pixmap.ppm.gz" );
+	pixmap_write_png( img, "pixmap.png" );
+	pixmap_write_jpg( img, "pixmap.jpg" );
 
 	img->chroma = PIXMAP_CHROMA_422;
 	img->quality = 40;
-	PixmapWriteJPG( img, "pixmap_c422_q40.jpg" );
+	pixmap_write_jpg( img, "pixmap_c422_q40.jpg" );
 	img->chroma = PIXMAP_CHROMA_411;
 	img->quality = 20;
-	PixmapWriteJPG( img, "pixmap_c411_q20.jpg" );
+	pixmap_write_jpg( img, "pixmap_c411_q20.jpg" );
 
-	PixmapFree( img );
+	pixmap_free( img );
 	return 0;
 }
 
-void PixmapPrint( struct pixmap* img ) {
+void pixmap_print( struct pixmap* img ) {
 	for ( long p = 0; p < PIXMAP_COLORS*img->width*img->height; p++ ) {
 		printf( "bytes[ %ld ] = %u\n", p, img->bytes[ p ] );
 	}

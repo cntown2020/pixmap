@@ -6,6 +6,6 @@
 
 #include <github.com/bszcz/pixmap/pixmap.h>
 
-int PixmapWritePPM_GZ( const struct pixmap* img, const char* fileName );
+int pixmap_write_ppm_gz( const struct pixmap* img, const char* filename );
 
 #endif

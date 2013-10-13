@@ -5,31 +5,31 @@
 #include <github.com/bszcz/pixmap/pixmap_png.h>
 #include <png.h>
 
-int PixmapWritePNG( const struct pixmap* img, const char* fileName ) {
+int pixmap_write_png( const struct pixmap* img, const char* filename ) {
 	int err = 0;
 
-	FILE* file = fopen( fileName, "wb" );
+	FILE* file = fopen( filename, "wb" );
 	if ( NULL == file ) {
-		fprintf( stderr, "PixmapError: cannot open PNG file '%s'\n", fileName );
+		fprintf( stderr, "pixmap error: cannot open PNG file '%s'\n", filename );
 		return 1;
 	}
 	png_structp png = png_create_write_struct( PNG_LIBPNG_VER_STRING, NULL, NULL, NULL );
 	if ( NULL == png ) {
-		fprintf( stderr, "PixmapError: cannot create PNG write struct" );
+		fprintf( stderr, "pixmap error: cannot create PNG write struct" );
 		err = 1;
-		goto fclosePNG;
+		goto fclose_png;
 	}
 	png_infop info = png_create_info_struct( png );
 	if ( NULL == info ) {
-		fprintf( stderr, "PixmapError: cannot create PNG info struct" );
+		fprintf( stderr, "pixmap error: cannot create PNG info struct" );
 		err = 1;
-		goto destroyPNG;
+		goto destroy_png;
 	}
 	png_bytepp rows = calloc( img->height, sizeof( png_bytep ) );
 	if ( NULL == rows ) {
-		fprintf( stderr, "PixmapError: cannot allocate memory\n" );
+		fprintf( stderr, "pixmap error: cannot allocate memory\n" );
 		err = 1;
-		goto destroyPNG;
+		goto destroy_png;
 	}
 	for ( long h = 0; h < img->height; h++ ) {
 		rows[ h ] = img->bytes + PIXMAP_COLORS*h*img->width;
@@ -44,12 +44,12 @@ int PixmapWritePNG( const struct pixmap* img, const char* fileName ) {
 	png_write_end( png, info );
 	free( rows );
 
-	destroyPNG:
+	destroy_png:
 		png_destroy_write_struct( &png, &info );
-	fclosePNG:
+	fclose_png:
 		if ( 0 != fclose( file ) ) {
-			fprintf( stderr, "PixmapError: cannot close PNG file '%s'\n", fileName );
+			fprintf( stderr, "pixmap error: cannot close PNG file '%s'\n", filename );
 			err = 1;
 		}
 	return err;
-} // PixmapWritePNG(  )
+} // pixmap_write_png(  )

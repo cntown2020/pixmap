@@ -9,17 +9,17 @@
 
 // chroma sampling
 enum {
-	 PIXMAP_CHROMA_411 = 1,		// 4:1:1
-	 PIXMAP_CHROMA_422 = 2,		// 4:2:2
-	 PIXMAP_CHROMA_444 = 4		// 4:4:4
+	PIXMAP_CHROMA_411 = 1,	// 4:1:1
+	PIXMAP_CHROMA_422 = 2,	// 4:2:2
+	PIXMAP_CHROMA_444 = 4	// 4:4:4
 };
 
 // colour channels
 enum {
-	 PIXMAP_RED = 0,	// red
-	 PIXMAP_GREEN = 1,	// green
-	 PIXMAP_BLUE = 2,	// blue
-	 PIXMAP_COLORS = 3
+	PIXMAP_RED = 0,
+	PIXMAP_GREEN = 1,
+	PIXMAP_BLUE = 2,
+	PIXMAP_COLORS = 3
 };
 
 // good values for jpg compression
@@ -38,10 +38,10 @@ struct pixmap {
 	unsigned char*** 	pixels2;	// access by: pixels2[0..width][0..height][PIXMAP_RED..PIXMAP_BLUE]
 };
 
-void* PixmapFree( struct pixmap* img );
+void* pixmap_free( struct pixmap* img );
 
-void* PixmapAllocError( struct pixmap* img );
+void* pixmap_alloc_error( struct pixmap* img );
 
-struct pixmap* PixmapAlloc( long width, long height );
+struct pixmap* pixmap_alloc( long width, long height );
 
 #endif

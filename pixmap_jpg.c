@@ -5,20 +5,20 @@
 #include <github.com/bszcz/pixmap/pixmap_jpg.h>
 #include <jpeglib.h>
 
-int PixmapWriteJPG( const struct pixmap* img, const char* fileName ) {
+int pixmap_write_jpg( const struct pixmap* img, const char* filename ) {
 	int err = 0;
 
-	FILE* file = fopen( fileName, "wb" );
+	FILE* file = fopen( filename, "wb" );
 	if ( NULL == file ) {
-		fprintf( stderr, "PixmapError: cannot open JPG file '%s'\n", fileName );
+		fprintf( stderr, "pixmap error: cannot open JPG file '%s'\n", filename );
 		return 1;
 	}
 
 	j_compress_ptr jpg = calloc( 1, sizeof( struct jpeg_compress_struct ) );
 	if ( NULL == jpg ) {
-		fprintf( stderr, "PixmapError: cannot create JPG compress struct" );
+		fprintf( stderr, "pixmap error: cannot create JPG compress struct" );
 		err = 1;
-		goto fcloseJPG;
+		goto fclose_jpg;
 	}
 	struct jpeg_error_mgr jerr;
 	jpg->err = jpeg_std_error( &jerr );
@@ -34,7 +34,7 @@ int PixmapWriteJPG( const struct pixmap* img, const char* fileName ) {
 	if ( 0 < img->quality || img->quality < 100 ) {
 		jpeg_set_quality( jpg, img->quality, TRUE );
 	} else {
-		fprintf( stderr, "PixmapError: invalid quality value (%d), setting to default\n", img->quality );
+		fprintf( stderr, "pixmap error: invalid quality value (%d), setting to default\n", img->quality );
 		jpeg_set_quality( jpg, PIXMAP_GOOD_QUALITY, TRUE );
 	}
 
@@ -46,7 +46,7 @@ int PixmapWriteJPG( const struct pixmap* img, const char* fileName ) {
 		jpg->comp_info[0].v_samp_factor = 1;
 	} else {
 		if ( PIXMAP_CHROMA_444 != img->chroma ) {
-			fprintf( stderr, "PixmapError: invalid chroma value (%d), setting to default\n", img->chroma );
+			fprintf( stderr, "pixmap error: invalid chroma value (%d), setting to default\n", img->chroma );
 		}
 		jpg->comp_info[0].h_samp_factor = 1;
 		jpg->comp_info[0].v_samp_factor = 1;
@@ -59,26 +59,26 @@ int PixmapWriteJPG( const struct pixmap* img, const char* fileName ) {
 	jpeg_start_compress( jpg, TRUE );
 	JSAMPROW* rows = calloc( img->height, sizeof( JSAMPROW ) );
 	if ( NULL == rows ) {
-		fprintf( stderr, "PixmapError: cannot allocate memory\n" );
+		fprintf( stderr, "pixmap error: cannot allocate memory\n" );
 		err = 1;
-		goto freeJPG;
+		goto free_jpg;
 	}
 	for ( long h = 0; h < img->height; h++ ) {
 		rows[ h ] = img->bytes + PIXMAP_COLORS*h*img->width;
 	}
 	if ( img->height != jpeg_write_scanlines( jpg, rows, img->height ) ) {
-		fprintf( stderr, "PixmapError: cannot write scanlines\n" );
+		fprintf( stderr, "pixmap error: cannot write scanlines\n" );
 		err = 1;
 	}
 
-	freeJPG:
+	free_jpg:
 		jpeg_finish_compress( jpg );
 		jpeg_destroy_compress( jpg );
 		free( rows );
 		free( jpg );
-	fcloseJPG:
+	fclose_jpg:
 		if ( 0 != fclose( file ) ) {
-			fprintf( stderr, "PixmapError: cannot close JPG file '%s'\n", fileName );
+			fprintf( stderr, "pixmap error: cannot close JPG file '%s'\n", filename );
 			err = 1;
 		}
 	return err;
