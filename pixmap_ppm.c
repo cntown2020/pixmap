@@ -1,8 +1,8 @@
 // Copyright (c) 2012-2013 Bartosz Szczesny
 // LICENSE: The MIT License (MIT)
 
-#include <github.com/bszcz/pixmap/pixmap.h>
-#include <github.com/bszcz/pixmap/pixmap_ppm.h>
+#include "pixmap.h"
+#include "pixmap_ppm.h"
 
 int pixmap_write_ppm( const struct pixmap* img, const char* filename ) {
 	int err = 0;

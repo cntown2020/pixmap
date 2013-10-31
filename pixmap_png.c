@@ -1,8 +1,8 @@
 // Copyright (c) 2012-2013 Bartosz Szczesny
 // LICENSE: The MIT License (MIT)
 
-#include <github.com/bszcz/pixmap/pixmap.h>
-#include <github.com/bszcz/pixmap/pixmap_png.h>
+#include "pixmap.h"
+#include "pixmap_png.h"
 #include <png.h>
 
 int pixmap_write_png( const struct pixmap* img, const char* filename ) {

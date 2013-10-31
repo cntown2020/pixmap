@@ -1,7 +1,7 @@
 // Copyright (c) 2012-2013 Bartosz Szczesny
 // LICENSE: The MIT License (MIT)
 
-#include <github.com/bszcz/pixmap/pixmap.h>
+#include "pixmap.h"
 
 void* pixmap_free( struct pixmap* img ) {
 	if ( NULL == img ) {

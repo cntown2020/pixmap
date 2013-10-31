@@ -4,7 +4,7 @@
 #ifndef __PIXMAP_PPM_GZ_H__ // enables .ppm.gz format, requires '-lz' compilation flag
 #define __PIXMAP_PPM_GZ_H__
 
-#include <github.com/bszcz/pixmap/pixmap.h>
+#include "pixmap.h"
 
 int pixmap_write_ppm_gz( const struct pixmap* img, const char* filename );
 
