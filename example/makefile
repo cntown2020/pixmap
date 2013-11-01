@@ -1,22 +1,17 @@
-CC=c99 -I${CODEPATH}
-CFLAGS=-g -Wall -Wextra
-PIXMAPLIBS=-ljpeg -lpng -lz
+CC=c99 -g -Wall -Wextra
 
-BINDIR=bin
-OBJDIR=obj
-SRCDIR=src
-PIXMAPDIR=${CODEPATH}/github.com/bszcz/pixmap
+VPATH=src:..
 
-VPATH=$(SRCDIR):$(PIXMAPDIR)
-HEADERFILES=$(notdir $(shell ls $(PIXMAPDIR)/*.h ) )
-OBJFILES=$(HEADERFILES:.h=.o)
-OBJS=$(addprefix $(OBJDIR)/, $(OBJFILES))
+pixmap_example_deps=src/pixmap_example.c lib/pixmap.a -ljpeg -lpng -lz
+pixmap_example: $(pixmap_example_deps)
+	$(CC) -o bin/pixmap_example $(pixmap_example_deps)
 
-pixmap_example: $(SRCDIR)/pixmap_example.c $(OBJS) $(PIXMAPLIBS)
-	$(CC) $(CFLAGS) -o $(BINDIR)/pixmap_example $(SRCDIR)/pixmap_example.c $(OBJS) $(PIXMAPLIBS)
+lib_pixmap_deps=obj/pixmap.o obj/pixmap_ppm.o obj/pixmap_ppm_gz.o obj/pixmap_png.o obj/pixmap_jpg.o
+lib/pixmap.a: $(lib_pixmap_deps)
+	ar rsv lib/pixmap.a $(lib_pixmap_deps)
 
-$(OBJDIR)/%.o: %.c %.h
-	$(CC) $(CFLAGS) -c $< -o $(OBJDIR)/$(@F)
+obj/%.o: %.c %.h
+	$(CC) -c $< -o obj/$(@F)
 
 clean:
 	@rm -i bin/pixmap_example obj/*.o

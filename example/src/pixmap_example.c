@@ -1,10 +1,10 @@
 // Copyright (c) 2012-2013 Bartosz Szczesny
 // LICENSE: The MIT License (MIT)
 
-#include <github.com/bszcz/pixmap/pixmap_ppm.h>
-#include <github.com/bszcz/pixmap/pixmap_ppm_gz.h>
-#include <github.com/bszcz/pixmap/pixmap_png.h>
-#include <github.com/bszcz/pixmap/pixmap_jpg.h>
+#include "../../pixmap_ppm.h"
+#include "../../pixmap_ppm_gz.h"
+#include "../../pixmap_png.h"
+#include "../../pixmap_jpg.h"
 
 void pixmap_print( struct pixmap* img );
 
