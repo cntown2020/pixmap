@@ -64,7 +64,7 @@ int pixmap_write_jpg( const struct pixmap* img, const char* filename ) {
 	for ( int h = 0; h < img->height; h++ ) {
 		rows[ h ] = img->bytes + PIXMAP_COLORS*h*img->width;
 	}
-	if ( img->height != jpeg_write_scanlines( jpg, rows, img->height ) ) {
+	if ( (unsigned int)img->height != jpeg_write_scanlines( jpg, rows, img->height ) ) {
 		fprintf( stderr, "pixmap error: cannot write scanlines\n" );
 		err = 1;
 	}
