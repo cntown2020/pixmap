@@ -1,9 +1,7 @@
 // Copyright (c) 2012-2013 Bartosz Szczesny
 // LICENSE: The MIT License (MIT)
 
-#include "pixmap.h"
 #include "pixmap_ppm_gz.h"
-#include <zlib.h>
 
 int pixmap_write_ppm_gz( const struct pixmap* img, const char* filename ) {
 	int err = 0;

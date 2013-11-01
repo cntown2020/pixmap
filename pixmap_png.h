@@ -5,6 +5,7 @@
 #define __PIXMAP_PNG_H__
 
 #include "pixmap.h"
+#include <png.h>
 
 int pixmap_write_png( const struct pixmap* img, const char* filename );
 

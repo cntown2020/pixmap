@@ -1,9 +1,7 @@
 // Copyright (c) 2012-2013 Bartosz Szczesny
 // LICENSE: The MIT License (MIT)
 
-#include "pixmap.h"
 #include "pixmap_png.h"
-#include <png.h>
 
 int pixmap_write_png( const struct pixmap* img, const char* filename ) {
 	int err = 0;

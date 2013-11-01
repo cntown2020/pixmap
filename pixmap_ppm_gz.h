@@ -5,6 +5,7 @@
 #define __PIXMAP_PPM_GZ_H__
 
 #include "pixmap.h"
+#include <zlib.h>
 
 int pixmap_write_ppm_gz( const struct pixmap* img, const char* filename );
 
