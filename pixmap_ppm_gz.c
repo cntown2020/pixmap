@@ -1,5 +1,5 @@
-// Copyright (c) 2012-2014 Bartosz Szczesny
-// LICENSE: The MIT License (MIT)
+// Copyright (c) 2012-2014 Bartosz Szczesny <bszcz@bszcz.org>
+// This program is free software under the MIT license.
 
 #include "pixmap_ppm_gz.h"
 

@@ -1,5 +1,5 @@
-// Copyright (c) 2012-2013 Bartosz Szczesny
-// LICENSE: The MIT License (MIT)
+// Copyright (c) 2012-2014 Bartosz Szczesny <bszcz@bszcz.org>
+// This program is free software under the MIT license.
 
 #ifndef PIXMAP_JPG_H // enables .jpg format, requires '-ljpeg' compilation flag
 #define PIXMAP_JPG_H
