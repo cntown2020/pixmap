@@ -1,8 +1,8 @@
 // Copyright (c) 2012-2013 Bartosz Szczesny
 // LICENSE: The MIT License (MIT)
 
-#ifndef __PIXMAP_H__
-#define __PIXMAP_H__
+#ifndef PIXMAP_H
+#define PIXMAP_H
 
 #include <stdio.h>
 #include <stdlib.h>

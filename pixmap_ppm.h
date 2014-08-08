@@ -1,8 +1,8 @@
 // Copyright (c) 2012-2013 Bartosz Szczesny
 // LICENSE: The MIT License (MIT)
 
-#ifndef __PIXMAP_PPM_H__ // enables .ppm format
-#define __PIXMAP_PPM_H__
+#ifndef PIXMAP_PPM_H // enables .ppm format
+#define PIXMAP_PPM_H
 
 #include "pixmap.h"
 
