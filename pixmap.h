@@ -31,11 +31,11 @@ enum {
 struct pixmap {
 	int width;
 	int height;
-	int chroma;	// jpeg only
-	int quality;	// jpeg only
-	unsigned char*		bytes;		// access by: bytes[0..PIXMAP_COLORS*width*height] ( RGBRGB... in row major order )
-	unsigned char**		pixels;		// access by: pixels[0..width*height][PIXMAP_RED..PIXMAP_BLUE]
-	unsigned char*** 	pixels2;	// access by: pixels2[0..width][0..height][PIXMAP_RED..PIXMAP_BLUE]
+	int chroma;  // jpeg only
+	int quality; // jpeg only
+	unsigned char*   bytes;   // access by: bytes[0..PIXMAP_COLORS*width*height] (RGBRGB... in row major order)
+	unsigned char**  pixels;  // access by: pixels[0..width*height][PIXMAP_RED..PIXMAP_BLUE]
+	unsigned char*** pixels2; // access by: pixels2[0..width][0..height][PIXMAP_RED..PIXMAP_BLUE]
 };
 
 void* pixmap_free(struct pixmap* img);

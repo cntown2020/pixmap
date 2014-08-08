@@ -50,4 +50,4 @@ fclose_png:
 		err = 1;
 	}
 	return err;
-} // pixmap_write_png(  )
+} // pixmap_write_png()

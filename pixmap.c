@@ -17,7 +17,7 @@ void* pixmap_free(struct pixmap* img) {
 		free(img->bytes);
 		free(img);
 	}
-	return NULL; // img = pixmap_free( img );
+	return NULL; // example use: img = pixmap_free(img);
 }
 
 void* pixmap_alloc_error(struct pixmap* img) {
@@ -78,4 +78,4 @@ struct pixmap* pixmap_alloc(int width, int height) {
 	}
 
 	return img;
-} // pixmap_alloc(  )
+} // pixmap_alloc()

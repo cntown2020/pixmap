@@ -6,7 +6,7 @@
 int pixmap_write_ppm_gz(const struct pixmap* img, const char* filename) {
 	int err = 0;
 
-	gzFile file = gzopen(filename, "wb9");   // '9' means maximum compression level
+	gzFile file = gzopen(filename, "wb9"); // '9' means maximum compression level
 	if (file == NULL) {
 		fprintf(stderr, "pixmap error: cannot open PPM.GZ file '%s'\n", filename);
 		return 1;
@@ -29,4 +29,4 @@ gzclose_ppm:
 		err = 1;
 	}
 	return err;
-} // pixmap_write_ppm_gz(  )
+} // pixmap_write_ppm_gz()

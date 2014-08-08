@@ -28,4 +28,4 @@ fclose_ppm:
 		err = 1;
 	}
 	return err;
-} // pixmap_write_ppm(  )
+} // pixmap_write_ppm()
