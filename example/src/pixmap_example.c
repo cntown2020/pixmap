@@ -17,7 +17,7 @@ int main() {
 	double x = 0.666;
 	for (int p = 0; p < PIXMAP_COLORS*img->width*img->height; p++) {
 		x = 4 * x * (1.0 - x); // random numbers from chaotic logistic map
-		img->bytes[ p ] = 256 * x;
+		img->bytes[p] = 256 * x;
 	}
 	//pixmap_print(img);
 
@@ -39,17 +39,17 @@ int main() {
 
 void pixmap_print(struct pixmap* img) {
 	for (int p = 0; p < PIXMAP_COLORS*img->width*img->height; p++) {
-		printf("bytes[ %d ] = %u\n", p, img->bytes[ p ]);
+		printf("bytes[%d] = %u\n", p, img->bytes[p]);
 	}
 	for (int p = 0; p < img->width*img->height; p++) {
 		for (int c = 0; c < PIXMAP_COLORS; c++) {
-			printf("pixels[ %d ][ %d ] = %u\n", p, c, img->pixels[ p ][ c ]);
+			printf("pixels[%d][%d] = %u\n", p, c, img->pixels[p][c]);
 		}
 	}
 	for (int h = 0; h < img->height; h++) {
 		for (int w = 0; w < img->width; w++) {
 			for (int c = 0; c < PIXMAP_COLORS; c++) {
-				printf("pixels2[ %d ][ %d ][ %d ] = %u\n", h, w, c, img->pixels2[ h ][ w ][ c ]);
+				printf("pixels2[%d][%d][%d] = %u\n", h, w, c, img->pixels2[h][w][c]);
 			}
 		}
 	}

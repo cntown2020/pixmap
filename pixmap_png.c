@@ -30,7 +30,7 @@ int pixmap_write_png(const struct pixmap* img, const char* filename) {
 		goto destroy_png;
 	}
 	for (int h = 0; h < img->height; h++) {
-		rows[ h ] = img->bytes + PIXMAP_COLORS*h*img->width;
+		rows[h] = img->bytes + PIXMAP_COLORS*h*img->width;
 	}
 
 	const int depth = 8;

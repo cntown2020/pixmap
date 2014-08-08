@@ -9,7 +9,7 @@ void* pixmap_free(struct pixmap* img) {
 	} else {
 		if (NULL != img->pixels2) {
 			for (int h = 0; h < img->height; h++) {
-				free(img->pixels2[ h ]);
+				free(img->pixels2[h]);
 			}
 		}
 		free(img->pixels2);
@@ -58,22 +58,22 @@ struct pixmap* pixmap_alloc(int width, int height) {
 	}
 
 	for (int h = 0; h < height; h++) {
-		img->pixels2[ h ] = NULL; // for clean freeing
+		img->pixels2[h] = NULL; // for clean freeing
 	}
 	for (int h = 0; h < height; h++) {
-		img->pixels2[ h ] = calloc(width, sizeof(unsigned char*));
-		if (NULL == img->pixels2[ h ]) {
+		img->pixels2[h] = calloc(width, sizeof(unsigned char*));
+		if (NULL == img->pixels2[h]) {
 			return pixmap_alloc_error(img);
 		}
 	}
 
 	// calculate pointers
 	for (int p = 0; p < width*height; p++) {
-		img->pixels[ p ] = img->bytes + PIXMAP_COLORS*p;
+		img->pixels[p] = img->bytes + PIXMAP_COLORS*p;
 	}
 	for (int h = 0; h < height; h++) {
 		for (int w = 0; w < width; w++) {
-			img->pixels2[ h ][ w ] = img->bytes + PIXMAP_COLORS*h*width + PIXMAP_COLORS*w;
+			img->pixels2[h][w] = img->bytes + PIXMAP_COLORS*h*width + PIXMAP_COLORS*w;
 		}
 	}
 
