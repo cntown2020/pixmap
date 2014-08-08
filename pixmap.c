@@ -1,13 +1,13 @@
-// Copyright (c) 2012-2013 Bartosz Szczesny
+// Copyright (c) 2012-2014 Bartosz Szczesny
 // LICENSE: The MIT License (MIT)
 
 #include "pixmap.h"
 
 void* pixmap_free(struct pixmap* img) {
-	if (NULL == img) {
+	if (img == NULL) {
 		fprintf(stderr, "pixmap warning: pixmap pointer == NULL\n");
 	} else {
-		if (NULL != img->pixels2) {
+		if (img->pixels2 != NULL) {
 			for (int h = 0; h < img->height; h++) {
 				free(img->pixels2[h]);
 			}
@@ -34,7 +34,7 @@ struct pixmap* pixmap_alloc(int width, int height) {
 
 	// allocate memory
 	struct pixmap* img = calloc(1, sizeof(struct pixmap));
-	if (NULL == img) {
+	if (img == NULL) {
 		return pixmap_alloc_error(img);
 	}
 	img->width = width;
@@ -45,15 +45,15 @@ struct pixmap* pixmap_alloc(int width, int height) {
 	img->pixels2 = NULL; // for clean freeing
 
 	img->bytes = calloc(PIXMAP_COLORS*width*height, sizeof(unsigned char));
-	if (NULL == img->bytes) {
+	if (img->bytes == NULL) {
 		return pixmap_alloc_error(img);
 	}
 	img->pixels = calloc(width*height, sizeof(unsigned char*));
-	if (NULL == img->pixels) {
+	if (img->pixels == NULL) {
 		return pixmap_alloc_error(img);
 	}
 	img->pixels2 = calloc(height, sizeof(unsigned char**));
-	if (NULL == img->pixels2) {
+	if (img->pixels2 == NULL) {
 		return pixmap_alloc_error(img);
 	}
 
@@ -62,7 +62,7 @@ struct pixmap* pixmap_alloc(int width, int height) {
 	}
 	for (int h = 0; h < height; h++) {
 		img->pixels2[h] = calloc(width, sizeof(unsigned char*));
-		if (NULL == img->pixels2[h]) {
+		if (img->pixels2[h] == NULL) {
 			return pixmap_alloc_error(img);
 		}
 	}

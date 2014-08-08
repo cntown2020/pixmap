@@ -1,4 +1,4 @@
-// Copyright (c) 2012-2013 Bartosz Szczesny
+// Copyright (c) 2012-2014 Bartosz Szczesny
 // LICENSE: The MIT License (MIT)
 
 #include "pixmap_ppm.h"
@@ -7,23 +7,23 @@ int pixmap_write_ppm(const struct pixmap* img, const char* filename) {
 	int err = 0;
 
 	FILE* file = fopen(filename, "wb");
-	if (NULL == file) {
+	if (file == NULL) {
 		fprintf(stderr, "pixmap error: cannot open PPM file '%s'\n", filename);
 		return 1;
 	}
-	if (0 > fprintf(file, "P6\n%d %d\n255\n", img->width, img->height)) {
+	if (fprintf(file, "P6\n%d %d\n255\n", img->width, img->height) < 0) {
 		fprintf(stderr, "pixmap error: cannot write PPM header\n");
 		err = 1;
 		goto fclose_ppm;
 	}
 	const size_t data_size = PIXMAP_COLORS*img->width*img->height;
-	if (data_size != fwrite(img->bytes, sizeof(unsigned char), data_size, file)) {
+	if (fwrite(img->bytes, sizeof(unsigned char), data_size, file) != data_size) {
 		fprintf(stderr, "pixmap error: cannot write PPM data\n");
 		err = 1;
 	}
 
 fclose_ppm:
-	if (0 != fclose(file)) {
+	if (fclose(file) != 0) {
 		fprintf(stderr, "pixmap error: cannot close PPM file '%s'\n", filename);
 		err = 1;
 	}

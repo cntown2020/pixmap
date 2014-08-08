@@ -1,4 +1,4 @@
-// Copyright (c) 2012-2013 Bartosz Szczesny
+// Copyright (c) 2012-2014 Bartosz Szczesny
 // LICENSE: The MIT License (MIT)
 
 #include "pixmap_png.h"
@@ -7,24 +7,24 @@ int pixmap_write_png(const struct pixmap* img, const char* filename) {
 	int err = 0;
 
 	FILE* file = fopen(filename, "wb");
-	if (NULL == file) {
+	if (file == NULL) {
 		fprintf(stderr, "pixmap error: cannot open PNG file '%s'\n", filename);
 		return 1;
 	}
 	png_structp png = png_create_write_struct(PNG_LIBPNG_VER_STRING, NULL, NULL, NULL);
-	if (NULL == png) {
+	if (png == NULL) {
 		fprintf(stderr, "pixmap error: cannot create PNG write struct");
 		err = 1;
 		goto fclose_png;
 	}
 	png_infop info = png_create_info_struct(png);
-	if (NULL == info) {
+	if (info == NULL) {
 		fprintf(stderr, "pixmap error: cannot create PNG info struct");
 		err = 1;
 		goto destroy_png;
 	}
 	png_bytepp rows = calloc(img->height, sizeof(png_bytep));
-	if (NULL == rows) {
+	if (rows == NULL) {
 		fprintf(stderr, "pixmap error: cannot allocate memory\n");
 		err = 1;
 		goto destroy_png;
@@ -45,7 +45,7 @@ int pixmap_write_png(const struct pixmap* img, const char* filename) {
 destroy_png:
 	png_destroy_write_struct(&png, &info);
 fclose_png:
-	if (0 != fclose(file)) {
+	if (fclose(file) != 0) {
 		fprintf(stderr, "pixmap error: cannot close PNG file '%s'\n", filename);
 		err = 1;
 	}

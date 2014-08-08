@@ -1,4 +1,4 @@
-// Copyright (c) 2012-2013 Bartosz Szczesny
+// Copyright (c) 2012-2014 Bartosz Szczesny
 // LICENSE: The MIT License (MIT)
 
 #include "../../pixmap_ppm.h"
@@ -10,7 +10,7 @@ void pixmap_print(struct pixmap* img);
 
 int main() {
 	struct pixmap* img = pixmap_alloc(1600, 1200);
-	if (NULL == img) {
+	if (img == NULL) {
 		exit(EXIT_FAILURE); // error message is printed by pixmap_alloc()
 	}
 
