@@ -7,6 +7,6 @@
 #include "pixmap.h"
 #include <jpeglib.h>
 
-int pixmap_write_jpg( const struct pixmap* img, const char* filename );
+int pixmap_write_jpg(const struct pixmap* img, const char* filename);
 
 #endif

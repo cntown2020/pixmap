@@ -38,10 +38,10 @@ struct pixmap {
 	unsigned char*** 	pixels2;	// access by: pixels2[0..width][0..height][PIXMAP_RED..PIXMAP_BLUE]
 };
 
-void* pixmap_free( struct pixmap* img );
+void* pixmap_free(struct pixmap* img);
 
-void* pixmap_alloc_error( struct pixmap* img );
+void* pixmap_alloc_error(struct pixmap* img);
 
-struct pixmap* pixmap_alloc( int width, int height );
+struct pixmap* pixmap_alloc(int width, int height);
 
 #endif
