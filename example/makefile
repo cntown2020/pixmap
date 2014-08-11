@@ -14,4 +14,4 @@ obj/%.o: %.c %.h
 	$(CC) -c $< -o obj/$(@F)
 
 clean:
-	@rm -i bin/pixmap_example obj/*.o
+	rm -fv bin/pixmap_example obj/*.o
